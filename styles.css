@@ -1,0 +1,425 @@
+/* ============================================================
+   CSS Custom Properties — Pastel-Brown Contemporary Theme
+   ============================================================ */
+:root {
+  /* Core palette */
+  --color-bg:       #F5EFE6;   /* warm off-white background */
+  --color-surface:  #FDFAF6;   /* card / section surface */
+  --color-text:     #3D2B1F;   /* deep warm brown for body text */
+  --color-text-muted: #7A5C4A; /* secondary / muted text */
+  --color-accent:   #C9956C;   /* warm pastel brown-orange accent */
+  --color-border:   #E0D0C1;   /* subtle border */
+
+  /* Category colors — must match CATEGORY_COLORS in app.js */
+  --color-food:      #C9956C;  /* warm pastel brown-orange */
+  --color-transport: #A8C5A0;  /* muted sage green */
+  --color-fun:       #B5A8D4;  /* soft lavender */
+
+  /* Typography */
+  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-base: 1rem;
+  --font-size-sm:   0.875rem;
+  --font-size-lg:   1.25rem;
+  --font-size-xl:   1.75rem;
+  --font-size-2xl:  2.25rem;
+  --line-height:    1.6;
+
+  /* Spacing */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+
+  /* Radii & shadows */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-card: 0 2px 8px rgba(61, 43, 31, 0.08);
+  --shadow-card-hover: 0 4px 16px rgba(61, 43, 31, 0.14);
+}
+
+/* ============================================================
+   Base Reset
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+h1 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-surface);
+}
+
+h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-xl);
+  background-color: var(--color-accent);
+  background-image: linear-gradient(
+    135deg,
+    #C9956C 0%,
+    #B8845B 60%,
+    #A87348 100%
+  );
+  box-shadow: 0 2px 12px rgba(61, 43, 31, 0.18);
+}
+
+/* ============================================================
+   Balance Display
+   ============================================================ */
+#balance-display {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-surface);
+  background-color: rgba(255, 255, 255, 0.18);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  min-width: 7ch;
+  text-align: right;
+  /* Ensure sufficient contrast for WCAG AA */
+  text-shadow: 0 1px 2px rgba(61, 43, 31, 0.25);
+}
+
+/* ============================================================
+   App Grid — Responsive Layout
+   ============================================================ */
+
+/* Mobile-first: single column */
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Desktop: three-column layout */
+@media (min-width: 769px) {
+  .app-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: var(--space-xl);
+    gap: var(--space-xl);
+  }
+}
+
+/* ============================================================
+   Section Cards — Form, List, Chart
+   ============================================================ */
+#form-section,
+#list-section,
+#chart-section {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  transition: box-shadow 0.2s ease;
+}
+
+#form-section:hover,
+#list-section:hover,
+#chart-section:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ============================================================
+   Form Styles
+   ============================================================ */
+
+/* Stack label + input vertically with spacing between groups */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.form-group label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* Full-width inputs, select */
+#item-name,
+#item-amount,
+#item-category {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+#item-name:focus,
+#item-amount:focus,
+#item-category:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(201, 149, 108, 0.2);
+}
+
+/* Select arrow */
+#item-category {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A5C4A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  padding-right: calc(var(--space-md) * 2.5);
+  cursor: pointer;
+}
+
+/* Submit button */
+#transaction-form button[type="submit"] {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+  margin-top: var(--space-xs);
+}
+
+#transaction-form button[type="submit"]:hover {
+  background-color: #B8845B;
+  box-shadow: 0 2px 8px rgba(201, 149, 108, 0.35);
+}
+
+#transaction-form button[type="submit"]:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Inline error area */
+#form-error {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: #C0392B;
+  min-height: 1.2em;
+  line-height: 1.4;
+}
+
+#form-error:empty {
+  display: none;
+}
+
+/* ============================================================
+   Transaction List Styles
+   ============================================================ */
+
+/* Scrollable container */
+#transaction-list {
+  list-style: none;
+  max-height: 420px;
+  overflow-y: auto;
+  /* Subtle inset scroll track */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+#transaction-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+#transaction-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#transaction-list::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 99px;
+}
+
+/* Individual list items */
+#transaction-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.12s ease;
+}
+
+#transaction-list li:last-child {
+  border-bottom: none;
+}
+
+#transaction-list li:hover {
+  background-color: rgba(224, 208, 193, 0.25);
+  border-radius: var(--radius-sm);
+}
+
+/* Item name — grows to fill available space */
+.tx-name {
+  flex: 1;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Amount — right-aligned */
+.tx-amount {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+/* Category badge — colored pill */
+.tx-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px var(--space-sm);
+  border-radius: 99px;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.tx-category[data-category="Food"] {
+  background-color: var(--color-food);
+}
+
+.tx-category[data-category="Transport"] {
+  background-color: var(--color-transport);
+}
+
+.tx-category[data-category="Fun"] {
+  background-color: var(--color-fun);
+}
+
+/* Delete button */
+.tx-delete {
+  flex-shrink: 0;
+  background: none;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 3px 7px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+}
+
+.tx-delete:hover {
+  background-color: #C0392B;
+  border-color: #C0392B;
+  color: #fff;
+}
+
+/* Empty state placeholder */
+#transaction-list .tx-empty {
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+/* ============================================================
+   Chart Section Styles
+   ============================================================ */
+
+/* Center the canvas */
+#chart-section canvas {
+  display: block;
+  margin: 0 auto var(--space-md);
+  max-width: 100%;
+  height: auto;
+}
+
+/* Legend — flex list of swatches + labels */
+#chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-sm);
+}
+
+#chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+/* Color swatch */
+.legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Empty chart message */
+#chart-empty-msg {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  margin-top: var(--space-md);
+}
